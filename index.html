@@ -29,10 +29,8 @@
                             <button type="submit" class="btn">Search</button>
                         </form>
                         <div class="text-left">
-                            <ul>
-                                <li class="my-2"><a href="#">San Diego,Ca</a></li>
-                                <li class="my-2"><a href="#">Memphis, Tn</a></li>
-                                <li class="my-2"><a href="#">Dallas, Tx</a></li>
+                            <ul id="previous-search" class="mt-4">
+                                
                             </ul>
                         </div>
                     </div>
@@ -41,22 +39,17 @@
 
             <div class="col-12 col-md-9 mt-2">
                 <div>
-                    <h3 class="text-center">Current Weather</h3>
+                    <h3 class="text-center">Today's Forecast For: <span id="current-city"></span></h3>
                     <div class="row justify-content-between">
-                        <div class="card col-5 mx-auto">
-                            <h4 class="card-title">Sunrise/Set</h4>
+                        <div class="card col-12 mx-auto text-center">
+                            <h4 class="card-title" id="current-date"></h4>
                             <ul>
-                                <li>Sunrise: 7:00AM</li>
-                                <li>Sunset: 7:00PM</li>
-                            </ul>
-                        </div>
-                        <div class="card col-5 mx-auto">
-                            <h4 class="card-title">Current Weather</h4>
-                            <ul>
-                                <li>Temperature: 85</li>
-                                <li>Cloud Cover: 35%</li>
-                                <li>Chance of Rain: 15%</li>
-                                <li>Uv Index: High</li>
+                                <li id="current-weather-img"></li>
+                                <li>Temperature: <span id="current-temp"></span></li>
+                                <li>Feels Like: <span id="current-feels-like"></span></li>
+                                <li>Wind Speed: <span id="current-wind"></span></li>
+                                <li>Humidity: <span id="current-humidity"></span></li>
+                                <li>UV Index: <span id="current-uvi"></span></li>
                             </ul>
                         </div>
                     </div>
@@ -67,57 +60,68 @@
         <h3 class="text-center my-3">5 Day Forecast</h3>
         <div class="row justify-content-between mt-3">
             <div class="card col-12 col-lg-2">
-                <h4 class="card-title mx-auto">Monday</h4>
+                <p class="card-title mx-auto" id="day-one"></p>
                 <img>
                 <ul>
-                    <li>Temp: <span class="ml-3">85*</span></li>
-                    <li>Clouds: <span class="ml-2">20%</span></li>
-                    <li>Rain: <span class="ml-4">75%</span></li>
+                    <li id="day-one-img"></li>
+                    <li>Temp: <span id="day-one-temp"></span></li>
+                    <li>Wind: <span id="day-one-wind"></span></li>
+                    <li>Humidity: <span id="day-one-humidity"></span></li>
+                    <li>UV Index: <span id="day-one-uvi"></span></li>
                 </ul>
             </div>
             <div class="card col-12 col-lg-2">
-                <h4 class="card-title mx-auto">Monday</h4>
+                <p class="card-title mx-auto" id="day-two"></p>
                 <img>
                 <ul>
-                    <li>Temp: <span class="ml-3">85*</span></li>
-                    <li>Clouds: <span class="ml-2">20%</span></li>
-                    <li>Rain: <span class="ml-4">75%</span></li>
+                    <li id="day-two-img"></li>
+                    <li>Temp: <span id="day-two-temp"></span></li>
+                    <li>Wind: <span id="day-two-wind"></span></li>
+                    <li>Humidity: <span id="day-two-humidity"></span></li>
+                    <li>UV Index: <span id="day-two-uvi"></span></li>
                 </ul>
             </div>
             <div class="card col-12 col-lg-2">
-                <h4 class="card-title mx-auto">Monday</h4>
+                <p class="card-title mx-auto" id="day-three"></p>
                 <img>
                 <ul>
-                    <li>Temp: <span class="ml-3">85*</span></li>
-                    <li>Clouds: <span class="ml-2">20%</span></li>
-                    <li>Rain: <span class="ml-4">75%</span></li>
+                    <li id="day-three-img"></li>
+                    <li>Temp: <span id="day-three-temp"></span></li>
+                    <li>Wind: <span id="day-three-wind"></span></li>
+                    <li>Humidity: <span id="day-three-humidity"></span></li>
+                    <li>UV Index: <span id="day-three-uvi"></span></li>
                 </ul>
             </div>
             <div class="card col-12 col-lg-2">
-                <h4 class="card-title mx-auto">Monday</h4>
+                <p class="card-title mx-auto" id="day-four"></p>
                 <img>
                 <ul>
-                    <li>Temp: <span class="ml-3">85*</span></li>
-                    <li>Clouds: <span class="ml-2">20%</span></li>
-                    <li>Rain: <span class="ml-4">75%</span></li>
+                    <li id="day-four-img"></li>
+                    <li>Temp: <span id="day-four-temp"></span></li>
+                    <li>Wind: <span id="day-four-wind"></span></li>
+                    <li>Humidity: <span id="day-four-humidity"></span></li>
+                    <li>UV Index: <span id="day-four-uvi"></span></li>
                 </ul>
             </div>
             <div class="card col-12 col-lg-2">
-                <h4 class="card-title mx-auto">Monday</h4>
+                <p class="card-title mx-auto" id="day-five"></p>
                 <img>
                 <ul>
-                    <li>Temp: <span class="ml-3">85*</span></li>
-                    <li>Clouds: <span class="ml-2">20%</span></li>
-                    <li>Rain: <span class="ml-4">75%</span></li>
+                    <li id="day-five-img"></li>
+                    <li>Temp: <span id="day-five-temp"></span></li>
+                    <li>Wind: <span id="day-five-wind"></span></li>
+                    <li>Humidity: <span id="day-five-humidity"></span></li>
+                    <li>UV Index: <span id="day-five-uvi"></span></li>
                 </ul>
             </div>
         </div>
     </main>
 
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="assets/js/script.js"></script>
 </body>
 </html>
