@@ -1,12 +1,12 @@
 var apiKey = "4fc42f8e0c162898089a67627a1e9437";
-var previousSearch = JSON.parse(localStorage.getItem("previousSearch"));
+var previousSearch = {};
 
 var displayWeather = function(lat, long, area) {
-    fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + long + "&units=imperial&appid=" + apiKey)
+    fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + long + "&units=imperial&exclude=hourly,minutely&appid=" + apiKey)
         .then(function(response) {
             if (response.ok) {
                 response.json().then(function(data) {
-                    // console.log(data);
+                    console.log(data);
 
                     // sets variabls to display the current and five day forecast days
                     var currentDate = moment.unix(data.current.dt).format("MMMM Do, YYYY");
@@ -161,13 +161,11 @@ var resetData = function() {
      $("#day-five-uvi").text(""); 
 }
 
-var pushCityData = function() {
-    localStorage.setItem("previousSearch", JSON.stringify(previousSearch));
-}
-
 $("#search-form").on("submit", function(event) {
     event.preventDefault();
     resetData();
+
+    $("#previous-search").html("");
 
     var location = $("#location").val().trim()
 
@@ -210,48 +208,38 @@ $("#search-form").on("submit", function(event) {
 
                     console.log(cityData);
 
-                    if (!previousSearch) {
-                        previousSearch = {};
-                        pushCityData();
-                    }
+                    if (!previousSearch.cityOne) {
+                        previousSearch.cityOne = cityData;
+                    } else if ((!previousSearch.cityTwo && previousSearch.cityOne != cityData) || previousSearch.cityOne != cityData) {
+                        previousSearch.cityTwo = previousSearch.cityOne;
+                        previousSearch.cityOne = cityData;
+                    } 
                     
+                    // console.log(previousSearch);
 
-                    if (Object.values(previousSearch).indexOf(cityData)) {
-                        if(!previousSearch.cityOne || previousSearch.cityOne != cityData) {
-                            while (previousSearch.cityTwo != previousSearch.cityThree || !previousSearch.cityThree) {
-                                if (previousSearch.cityTwo != previousSearch.cityThree || previousSearch.cityTwo != previousSearch.cityThree){
-                                    previousSearch.cityThree = previousSearch.cityTwo
-                                }
-                            }
+                    // sets the first dynamic button for the search bar
+                    var previousSearchOneBtn = $("<button>");
+                    var previousSearchOneLi = $("<li>");
+                    $(previousSearchOneBtn).addClass("btn btn-secondary m-2");
+                    $(previousSearchOneBtn).text(previousSearch.cityOne);
 
-                            while (previousSearch.cityOne != previousSearch.cityTwo) {
-                                if (previousSearch.cityOne != previousSearch.cityTwo || !previousSearch.cityTwo) {
-                                    previousSearch.cityTwo = previousSearch.cityOne;
-                                }
-                            }
+                    $(previousSearchOneLi).append(previousSearchOneBtn);
 
-                            previousSearch.cityOne = cityData;
-                            
-                            pushCityData();
+                    $("#previous-search").append(previousSearchOneLi);
 
-                        } else if (!previousSearch.cityTwo || previousSearch.cityTwo != cityData) {
-                            if (previousSearch.cityOne != previousSearch.cityTwo) {
-                                previousSearch.cityOne = previousSearch.cityTwo;
-                                pushCityData();
-                                return;
-                            } else {
-                                previousSearch.cityTwo = cityData;
-                                pushCityData();
-                                return;
-                            }
-                        } else if (!previousSearch.cityThree || previousSearch.cityThree != cityData) {
-                            previousSearch.cityThree = cityData;
-                            localStorage.setItem("previousSearch", JSON.stringify(previousSearch));
-                            return;
-                        }
+                    // checks to see if there is information for a second button and if there is appends it as a button to the form
+                    if (previousSearch.cityTwo == null){
+                        return;
+                    } else {
+                        var previousSearchTwoBtn = $("<button>");
+                        var previousSearchTwoLi = $("<li>");
+                        $(previousSearchTwoBtn).addClass("btn btn-secondary m-2");
+                        $(previousSearchTwoBtn).text(previousSearch.cityTwo)
+
+                        $(previousSearchTwoLi).append(previousSearchTwoBtn);
+                    
+                        $("#previous-search").append(previousSearchTwoLi);
                     }
-
-                    console.log(previousSearch);
                 })
             } 
         })
@@ -259,4 +247,7 @@ $("#search-form").on("submit", function(event) {
     $("#location").val("");
 })
 
-
+// allows the user to pick a previous search to display
+$("#previous-search").on("click", "li", function(target) {
+    $("#location").val(target.target.innerText);
+})
