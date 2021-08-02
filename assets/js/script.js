@@ -10,11 +10,11 @@ var displayWeather = function(lat, long, area) {
 
                     // sets variabls to display the current and five day forecast days
                     var currentDate = moment.unix(data.current.dt).format("MMMM Do, YYYY");
-                    var dayOne = moment.unix(data.daily[0].dt).format("MMMM Do, YYYY");
-                    var dayTwo = moment.unix(data.daily[1].dt).format("MMMM Do, YYYY");
-                    var dayThree = moment.unix(data.daily[2].dt).format("MMMM Do, YYYY");
-                    var dayFour = moment.unix(data.daily[3].dt).format("MMMM Do, YYYY");
-                    var dayFive = moment.unix(data.daily[4].dt).format("MMMM Do, YYYY");
+                    var dayOne = moment.unix(data.daily[1].dt).format("MMMM Do, YYYY");
+                    var dayTwo = moment.unix(data.daily[2].dt).format("MMMM Do, YYYY");
+                    var dayThree = moment.unix(data.daily[3].dt).format("MMMM Do, YYYY");
+                    var dayFour = moment.unix(data.daily[4].dt).format("MMMM Do, YYYY");
+                    var dayFive = moment.unix(data.daily[5].dt).format("MMMM Do, YYYY");
 
                     // sets the text content that contains each date
                     $("#current-date").text(currentDate);
@@ -35,61 +35,115 @@ var displayWeather = function(lat, long, area) {
                     $("#current-wind").text(data.current.wind_speed);
                     $("#current-humidity").text(data.current.humidity);
                     $("#current-uvi").text(data.current.uvi);
+
+                    // checks the current uvi and sets a pill around the span
+                    if (data.current.uvi < 2) {
+                        $("#current-uvi").addClass("badge badge-success")
+                    } else if (data.current.uvi > 8 ) {
+                        $("#current-uvi").addClass("badge badge-danger")
+                    } else {
+                        $("#current-uvi").addClass("badge badge-warning")
+                    }
                     
                     // sets the image for day one
                     var dayOneImg = $("<img>");
-                    $(dayOneImg).attr("src", "http://openweathermap.org/img/wn/" + data.daily[0].weather[0].icon + "@2x.png")
+                    $(dayOneImg).attr("src", "http://openweathermap.org/img/wn/" + data.daily[1].weather[0].icon + "@2x.png")
                     $("#day-one-img").append(dayOneImg);
 
                     // sets the variables for day one
-                    $("#day-one-temp").text(data.daily[0].temp.day);
-                    $("#day-one-wind").text(data.daily[0].wind_speed);
-                    $("#day-one-humidity").text(data.daily[0].humidity);
-                    $("#day-one-uvi").text(data.daily[0].uvi);
+                    $("#day-one-temp").text(data.daily[1].temp.day);
+                    $("#day-one-wind").text(data.daily[1].wind_speed);
+                    $("#day-one-humidity").text(data.daily[1].humidity);
+                    $("#day-one-uvi").text(data.daily[1].uvi);
+
+                    // checks the uvi and sets a pill around the span
+                    if (data.daily[0].uvi < 2) {
+                        $("#day-one-uvi").addClass("badge badge-success")
+                    } else if (data.daily[0].uvi > 8 ) {
+                        $("#day-one-uvi").addClass("badge badge-danger")
+                    } else {
+                        $("#day-one-uvi").addClass("badge badge-warning")
+                    }
 
                     // sets the image for day two
                     var dayTwoImg = $("<img>")
-                    $(dayTwoImg).attr("src", "http://openweathermap.org/img/wn/" + data.daily[1].weather[0].icon + "@2x.png")
+                    $(dayTwoImg).attr("src", "http://openweathermap.org/img/wn/" + data.daily[2].weather[0].icon + "@2x.png")
                     $("#day-two-img").append(dayTwoImg);
 
                     // sets the variables for day two
-                    $("#day-two-temp").text(data.daily[1].temp.day);
-                    $("#day-two-wind").text(data.daily[1].wind_speed);
-                    $("#day-two-humidity").text(data.daily[1].humidity);
-                    $("#day-two-uvi").text(data.daily[1].uvi);
+                    $("#day-two-temp").text(data.daily[2].temp.day);
+                    $("#day-two-wind").text(data.daily[2].wind_speed);
+                    $("#day-two-humidity").text(data.daily[2].humidity);
+                    $("#day-two-uvi").text(data.daily[2].uvi);
+
+                    // checks the uvi and sets a pill around the span
+                    if (data.daily[2].uvi < 2) {
+                        $("#day-two-uvi").addClass("badge badge-success")
+                    } else if (data.daily[2].uvi > 8 ) {
+                        $("#day-two-uvi").addClass("badge badge-danger")
+                    } else {
+                        $("#day-two-uvi").addClass("badge badge-warning")
+                    }
 
                     // sets the image for day three
                     var dayThreeImg = $("<img>");
-                    $(dayThreeImg).attr("src", "http://openweathermap.org/img/wn/" + data.daily[2].weather[0].icon + "@2x.png")
+                    $(dayThreeImg).attr("src", "http://openweathermap.org/img/wn/" + data.daily[3].weather[0].icon + "@2x.png")
                     $("#day-three-img").append(dayThreeImg);
 
                     // sets the variables for day three
-                    $("#day-three-temp").text(data.daily[2].temp.day);
-                    $("#day-three-wind").text(data.daily[2].wind_speed);
-                    $("#day-three-humidity").text(data.daily[2].humidity);
-                    $("#day-three-uvi").text(data.daily[2].uvi);
+                    $("#day-three-temp").text(data.daily[3].temp.day);
+                    $("#day-three-wind").text(data.daily[3].wind_speed);
+                    $("#day-three-humidity").text(data.daily[3].humidity);
+                    $("#day-three-uvi").text(data.daily[3].uvi);
+
+                    // checks the uvi and sets a pill around the span
+                    if (data.daily[3].uvi < 2) {
+                        $("#day-three-uvi").addClass("badge badge-success")
+                    } else if (data.daily[3].uvi > 8 ) {
+                        $("#day-three-uvi").addClass("badge badge-danger")
+                    } else {
+                        $("#day-three-uvi").addClass("badge badge-warning")
+                    }
 
                     // sets the image for day four
                     var dayFourImg = $("<img>");
-                    $(dayFourImg).attr("src", "http://openweathermap.org/img/wn/" + data.daily[3].weather[0].icon + "@2x.png")
+                    $(dayFourImg).attr("src", "http://openweathermap.org/img/wn/" + data.daily[4].weather[0].icon + "@2x.png")
                     $("#day-four-img").append(dayFourImg);
 
                     // sets the variables for day four
-                    $("#day-four-temp").text(data.daily[3].temp.day);
-                    $("#day-four-wind").text(data.daily[3].wind_speed);
-                    $("#day-four-humidity").text(data.daily[3].humidity);
-                    $("#day-four-uvi").text(data.daily[3].uvi);
+                    $("#day-four-temp").text(data.daily[4].temp.day);
+                    $("#day-four-wind").text(data.daily[4].wind_speed);
+                    $("#day-four-humidity").text(data.daily[4].humidity);
+                    $("#day-four-uvi").text(data.daily[4].uvi);
+
+                    // checks the uvi and sets a pill around the span
+                    if (data.daily[4].uvi < 2) {
+                        $("#day-four-uvi").addClass("badge badge-success")
+                    } else if (data.daily[4].uvi > 8 ) {
+                        $("#day-four-uvi").addClass("badge badge-danger")
+                    } else {
+                        $("#day-four-uvi").addClass("badge badge-warning")
+                    }
 
                     // sets the image for day five
                     var dayFiveImg = $("<img>");
-                    dayFiveImg.attr("src", "http://openweathermap.org/img/wn/" + data.daily[4].weather[0].icon + "@2x.png")
+                    dayFiveImg.attr("src", "http://openweathermap.org/img/wn/" + data.daily[5].weather[0].icon + "@2x.png")
                     $("#day-five-img").append(dayFiveImg);
 
                     // sets the variables for day five
-                    $("#day-five-temp").text(data.daily[4].temp.day);
-                    $("#day-five-wind").text(data.daily[4].wind_speed);
-                    $("#day-five-humidity").text(data.daily[4].humidity);
-                    $("#day-five-uvi").text(data.daily[4].uvi); 
+                    $("#day-five-temp").text(data.daily[5].temp.day);
+                    $("#day-five-wind").text(data.daily[5].wind_speed);
+                    $("#day-five-humidity").text(data.daily[5].humidity);
+                    $("#day-five-uvi").text(data.daily[5].uvi); 
+
+                    // checks the uvi and sets a pill around the span
+                    if (data.daily[5].uvi < 2) {
+                        $("#day-five-uvi").addClass("badge badge-success")
+                    } else if (data.daily[5].uvi > 8 ) {
+                        $("#day-five-uvi").addClass("badge badge-danger")
+                    } else {
+                        $("#day-five-uvi").addClass("badge badge-warning")
+                    }
                 })
             }
         })
@@ -159,6 +213,14 @@ var resetData = function() {
      $("#day-five-wind").text("");
      $("#day-five-humidity").text("");
      $("#day-five-uvi").text(""); 
+
+    // resets the badges
+    $("#current-uvi").removeClass();
+    $("#day-one-uvi").removeClass();
+    $("#day-two-uvi").removeClass();
+    $("#day-three-uvi").removeClass();
+    $("#day-four-uvi").removeClass();
+    $("#day-five-uvi").removeClass();
 }
 
 $("#search-form").on("submit", function(event) {

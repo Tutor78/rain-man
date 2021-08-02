@@ -12,7 +12,7 @@ A dynamic weather app that allows for the user to search by city for their local
 
 ## Preview
 
-[Alt text](assets/images/screenshot.png "screenshot of rain man")
+![Alt text](assets/images/screenshot.png "screenshot of rain man")
 
 ## Languages/FrameWorks
 
