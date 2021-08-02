@@ -1,4 +1,4 @@
-var apiKey = "4fc42f8e0c162898089a67627a1e9437";
+var apiKey = "";
 var previousSearch = JSON.parse(localStorage.getItem("previousSearch"));
 
 var displayWeather = function(lat, long, area) {
