@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 var apiKey = "4fc42f8e0c162898089a67627a1e9437";
 var previousSearch = JSON.parse(localStorage.getItem("previousSearch"));
-=======
-var apiKey = "";
->>>>>>> 04167ce4eecf021de8a3849c3906b6a16674381d
 
 var displayWeather = function(lat, long, area) {
     fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + long + "&units=imperial&appid=" + apiKey)
